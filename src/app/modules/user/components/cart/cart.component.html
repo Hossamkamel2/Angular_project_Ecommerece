@@ -1,0 +1,62 @@
+<div style="padding-top: 150px;" class="page-heading products-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-content">
+            <h4>cart</h4>
+            <h2>products in cart</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div style="padding-top: 10vh;" class="container">
+    <div class="row">
+        <div *ngIf="total != 0" style="margin-bottom: 2%;" class="col-6">
+            <button type="button" *ngIf="products.length > 0 && isAuth" (click)="checkOut()" #checkOutBtn class="btn btn-outline-success">Checkout</button>
+        </div>
+        <div *ngIf="total != 0" style="margin-bottom: 2%;" class="col-6">
+            <button style="float: right;" type="button" *ngIf="products.length > 0 && isAuth" (click)="clearCart()" #clearCartBtn class="btn btn-outline-danger">Clear Cart</button>
+        </div>
+        <table *ngIf="total != 0" class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quentity</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let product of products">
+                    <tr *ngIf="product.quantity > 0">
+                        <td>{{product.title}}</td>
+                        <td>${{product.price * product.quantity}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary mb-1"(click)="reduceProduct(product)">-</button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{product.quantity}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <button type="button" (click)="addProduct(product)" class="btn btn-outline-secondary mb-1">+</button>
+                        </td>
+                        <td>
+                            <button type="button" (click)="removeProduct(product)" class="btn btn-outline-secondary mb-1"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        </td>
+                    </tr>
+                </ng-container>
+                <tr style="color: cornsilk;">
+                    <td class="bg-danger">Total Proce: </td>
+                    <td colspan="3" class="bg-danger">${{total}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="(total == 0 && !flag) || items?.length == 0" style="text-align: center; width: 100%; margin-bottom: 5%;">
+            <h3 te>There is no products in cart ...</h3>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="flag && items?.length != 0" class="container">
+    <div class="row">
+        <div style="margin-left:49%; margin-bottom:5%" class="loader4"></div>
+    </div>
+</div>

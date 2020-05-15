@@ -1,0 +1,35 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
+    margin-top: 9%;
+    text-align: center;
+    border: 2px solid rgb(165, 118, 187);
+    border-radius:25%;
+    padding: 15px;
+    box-shadow: 10px 10px 5px 0px rgba(163, 56, 224, 0.315);
+  }
+  
+  .example-full-width {
+    width: 90%;
+  }
+
+  .mat-raised-button.mat-primary{
+    background-color: #007bff;
+  }
+
+  .mat-form-field {
+    margin-bottom: 15px;
+  }
+
+  .dontMatch{
+    margin-bottom: 10px;
+  }
+
+  .image{
+    margin-left: 27%;
+    padding: 2px;
+    border: 1px solid #adaaaa;
+    width: 45%;
+  }

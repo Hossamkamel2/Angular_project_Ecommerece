@@ -1,0 +1,47 @@
+<div class="team-members">
+  <div class="container">
+    <div class="row">
+      <div *ngIf="profile" style="margin-top: 18vh;" class="col-md-4 offset-md-4">
+        <div class="team-member">
+          <div class="thumb-container">
+            <img class="image" *ngIf="profile.imageUrl == '' && profile.gender == 1" src="assets/images/male_default.jpg" alt="">
+            <img class="image" *ngIf="profile.imageUrl == '' && profile.gender == 2" src="assets/images/female_default.jpg" alt="">
+            <img class="image" *ngIf="profile.imageUrl != ''" [src]="profile.imageUrlBinary" alt="">
+          </div>
+          <div class="down-content">
+            <h4>{{profile?.username}}</h4>
+            <span style="margin-bottom: 10px;">{{profile?.email}}</span>
+            <span *ngIf="profile?.gender == 1">Male</span>
+            <span *ngIf="profile?.gender == 2">Female</span>
+            <button (click)="openModel()" type="button" data-toggle="modal" data-target="#exampleModal"
+              class="btn btn-primary">Edit Profile</button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!profile" style="margin-top: 18vh;" class="col-md-4 offset-md-4">
+        <div style="height: 60vh;" class="team-member">
+          <div style="margin-top: 45%; margin-left: 45%;" class="loader4"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div style="margin-top: 20%; margin-bottom: 30%;" class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+        <button type="button" #closebutton class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-profile-form [profile]="profile" [closebutton]="closebutton"></app-profile-form>
+      </div>
+    </div>
+  </div>
+</div>

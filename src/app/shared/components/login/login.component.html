@@ -1,0 +1,33 @@
+<div class="bg-img">
+  <div class="content">
+    <h2 class="login-header">Login</h2>
+    <form [formGroup]="loginForm">
+      <div class="field">
+        <span class="fa fa-envelope"></span>
+        <input formControlName="email" type="text" placeholder="Email or Phone">
+      </div>
+      <p style="color: red;" *ngIf="email.touched && email.hasError('email') && !email.hasError('required')">
+        Please enter a valid email address
+      </p>
+      <p style="color: red;" *ngIf="email.touched && email.hasError('required')">
+        Email is <strong>required</strong>
+      </p>
+      <div class="field space">
+        <span class="fa fa-lock"></span>
+        <input formControlName="password" type="password" class="pass-key" placeholder="Password">
+      </div>
+      <p style="color: red;" *ngIf="password.touched && password.hasError('required') && !password.hasError('minlength')">
+        password <strong>required</strong>
+      </p>
+      <p style="color: red;" *ngIf="password.touched && password.hasError('minlength')">
+        password must be at least <strong>5 charcters</strong>
+      </p>
+      <div class="field login-btn">
+        <button (click)="login()" [disabled]="!loginForm.valid || toggle" type="button">{{toggle ? 'Loadding...':'Login'}}</button>
+      </div>
+    </form>
+    <div class="signup">Don't have account?
+      <a routerLink="/register">Signup Now</a>
+    </div>
+  </div>
+</div>

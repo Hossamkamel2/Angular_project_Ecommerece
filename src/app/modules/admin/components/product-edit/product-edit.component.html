@@ -1,0 +1,52 @@
+<form *ngIf="product" [formGroup]="productform" class="addProductForm col-md-4 col-sm-6">
+    <h3 style="text-align: center; margin-bottom: 5%;">Edit Product</h3>
+    <div class="form-group">
+      <div *ngIf="preview && preview !== null">
+        <img class="image" [src]="preview">
+      </div>
+      <div *ngIf="!preview && preview == null && (!product.imageUrl || product.imageUrl == '')">
+        <img class="image" src="assets/images/product-default.jpg">
+      </div>
+      <div *ngIf="product.imageUrl && product.imageUrl != '' && !preview">
+        <img class="image" [src]="productPhoto">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="Title">Title</label>
+      <input value="{{product?.title}}" formControlName="title" type="text" class="form-control" id="Title">
+      <small class="form-text text-muted">choose sutable name for your product.</small>
+      <p style="color: red;" *ngIf="title.touched && title.hasError('required')">
+        Title is <strong>required</strong>
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Picture</label>
+      <input (change)="uploadFile($event)" type="file" class="form-control-file" id="exampleFormControlFile1">
+      <p style="color: red;" *ngIf="imageSizeError">
+        file size can't exceed <strong>5 mb</strong>
+      </p>
+      <p style="color: red;" *ngIf="imageFormatError">
+        Only .png, .jpg and .jpeg format allowed!
+      </p>
+    </div>
+    <div class="form-group">
+      <label for="price">price</label>
+      <input value="{{product?.price}}" formControlName="price" type="number" class="form-control" id="price">
+      <p style="color: red;" *ngIf="price.touched && price.hasError('required')">
+        price is <strong>required</strong>
+      </p>
+      <p style="color: red;" *ngIf="price.touched && price.hasError('min') && !price.hasError('required')">
+        price can't be less than 0
+      </p>
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea value="{{product?.description}}" formControlName="description" class="form-control" id="Description" rows="3"></textarea>
+      </div>
+    <button style="margin-bottom: 10%;" [disabled]="!productform.valid || imageSizeError || imageFormatError" #saveBtn (click)="save()" type="submit" class="btn btn-primary">Edit</button>
+  </form>
+
+  <div style="height: 77vh;" *ngIf="!product" class="addProductForm col-md-4 col-sm-6">
+    <h3 style="text-align: center; margin-bottom: 5%;">Edit Product</h3>
+    <div style="margin-left: 45%; margin-top: 25%;" class="loader4"></div>
+  </div>

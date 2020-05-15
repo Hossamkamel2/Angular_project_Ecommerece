@@ -1,0 +1,60 @@
+<div style="background-image: url(contact-heading.jpg); padding-top: 150px;"
+    class="page-heading products-heading header-text">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-content">
+                    <h4>orders</h4>
+                    <h2>orders you made</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div style="padding-top: 5%;" class="filters-content">
+                <div class="row grid">
+
+                    <ng-container *ngIf="orders.length != 0 && !flag">
+                        <div *ngFor="let order of orders" class="col-lg-4 col-md-4 all des">
+                            <div class="product-item">
+                                <div style="min-height: 250px;" class="card text-white"
+                                    [class.bg-primary]="order.status == 1" [class.bg-success]="order.status == 2"
+                                    [class.bg-danger]="order.status == 3">
+                                    <div *ngIf="order.status == 1" class="card-header">
+                                        Pending
+                                        <button (click)="deleteOrder(order)"
+                                            style="float: right; padding: 0; color: cornsilk;" class="btn"><i
+                                                class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                    <div *ngIf="order.status == 2" class="card-header">Approved</div>
+                                    <div *ngIf="order.status == 3" class="card-header">Rejected</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><b>Total Price: </b>${{order.totalPrice}}</h5>
+                                        <p class="card-text"><b>Prosucts: </b>{{order.productTitles}}</p>
+                                    </div>
+                                    <div class="card-footer bg-transparent">
+                                        <b>Date: </b>{{order.date}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div *ngIf="orders.length == 0 && !flag" style="width:100%; text-align: center; margin-bottom: 3%">
+                        <h3>There is no Orders yet ...</h3>
+                    </div>
+
+                    <div *ngIf="flag" style="width:100%; text-align: center; margin-bottom: 3%">
+                        <div class="loader4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

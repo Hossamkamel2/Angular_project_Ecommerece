@@ -1,0 +1,102 @@
+.lds-dual-ring {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  .card-title{
+      /* padding-top: 50px; */
+      
+      display: block;
+  }
+  .container {
+      margin-top: 70px;
+      
+    }
+    .card {
+      border: 2px solid thistle;
+      
+      height: 150px;
+    }
+    .card-img {
+      /* padding-top: 50px; */
+      border-radius: 5px;
+      transform: translateX(-50%);
+    }
+    .vgr-cards 
+      .card {
+        display: flex;
+        flex-flow: wrap;
+        flex: 100%;
+        margin-bottom: 40px;  
+       
+      }
+      /* @media (max-width: 576px) {
+        .vgr-cards .card {
+        /* display: block; */
+      /*}
+      }  */
+        .card :nth-child(even) .card-img-body {
+          order: 2;
+        }
+      .vgr-cards .card-img-body {
+          flex: 1;
+          overflow: hidden;
+          position: relative;
+      
+          
+        }
+        @media (max-width: 800px) {
+          .vgr-cards .card-img-body {
+          flex: 2.5;
+          width: 100%;
+          /* height: 200px; */
+          margin-bottom: 20px;
+          }
+        }
+         .card-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: flex;
+          height: auto;
+          position:absolute;
+          margin-left: 50%;
+          transform: translateX(-50%);
+        }
+        @media (max-width: 1140px) {
+          .card-img {
+          margin: 0;
+          transform: none;
+          width: 100%;
+          height: 100%;
+          }
+        }
+      
+        .vgr-cards .card-body {
+          flex: 2;
+          padding: 0 0 0 1.25rem;
+      
+         
+        }
+  

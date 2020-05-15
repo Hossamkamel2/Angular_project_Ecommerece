@@ -1,0 +1,11 @@
+.addProductForm{
+  padding-top: 20vh;
+  margin: auto;
+}
+
+.image{
+  margin-left: 27%;
+  padding: 2px;
+  border: 1px solid #adaaaa;
+  width: 45%;
+}

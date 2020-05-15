@@ -1,0 +1,65 @@
+<div class="bg-img">
+  <div style="margin-top: 6%; padding: 30px;" class="content">
+    <h2 class="login-header">Signup</h2>
+    <form [formGroup]="registerForm">
+      <div class="field">
+        <span class="fa fa-user"></span>
+        <input formControlName="username" type="text" placeholder="Full Name">
+      </div>
+      <p style="color: red;" *ngIf="username.touched && username.hasError('required')">
+        Full Name <strong>required</strong>
+      </p>
+
+      <div class="field space">
+        <span class="fa fa-envelope"></span>
+        <input formControlName="email" type="email" placeholder="Email Address">
+      </div>
+      <p style="color: red;" *ngIf="email.touched && email.hasError('email') && !email.hasError('required')">
+        Please enter a valid email address
+      </p>
+      <p style="color: red;" *ngIf="email.touched && email.hasError('required')">
+        Email is <strong>required</strong>
+      </p>
+      
+      <div class="field space">
+        <span class="fa fa-lock"></span>
+        <input formControlName="password" type="password" class="pass-key" placeholder="Password">
+      </div>
+      <p style="color: red;" *ngIf="password.touched && password.hasError('required') && !password.hasError('minlength')">
+        password <strong>required</strong>
+      </p>
+      <p style="color: red;" *ngIf="password.touched && password.hasError('minlength')">
+        password must be at least <strong>5 charcters</strong>
+      </p>
+
+      <div class="field space">
+        <span class="fa fa-lock"></span>
+        <input formControlName="confirmPassword" type="password" class="pass-key" placeholder="Conform Password">
+      </div>
+      <p style="color: red;" *ngIf="confirmPassword.touched && confirmPassword.hasError('required') && !confirmPassword.hasError('minlength')">
+        confirm password <strong>required</strong>
+      </p>
+      <p style="color: red;" *ngIf="registerForm.hasError('mismatch') && confirmPassword.touched && !confirmPassword.hasError('required')">
+        don't match passord
+      </p>
+
+      <div class="field space">
+        <span class="fa fa-mars"></span>
+        <select class="gender" formControlName="gender">
+          <option selected value="1">Male</option>
+          <option value="2">Female</option>
+        </select>
+      </div>
+      <p style="color: red;" *ngIf="gender.touched && gender.hasError('required')">
+        gender <strong>required</strong>
+      </p>
+
+      <div class="field login-btn">
+        <button (click)="register()" [disabled]="!registerForm.valid || toggle" type="button">{{toggle ? 'Loadding...':'Signup'}}</button>
+      </div>
+    </form>
+    <div class="signup">Already have account?
+      <a routerLink="/login">Login Now</a>
+    </div>
+  </div>
+</div>

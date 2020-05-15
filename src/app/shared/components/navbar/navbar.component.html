@@ -1,0 +1,85 @@
+<!-- ***** Preloader Start ***** -->
+<!-- <div id="preloader">
+  <div class="jumper">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div> -->
+<!-- ***** Preloader End ***** -->
+
+<!-- Header -->
+<header class="">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" routerLink="/home">
+        <h2>Sixteen <em>Clothing</em></h2>
+      </a>
+      <button class="navbar-toggler collapsed" (click)="toggleShow()" type="button" aria-controls="navbarResponsive"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div *ngIf="!flag" class="collapse navbar-collapse" [class.show]="show" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a>
+          </li>
+          <li *ngIf="!isAuth" class="nav-item">
+            <a class="nav-link" routerLink="/register" routerLinkActive="active">Signup</a>
+          </li>
+          <li *ngIf="!isAuth" class="nav-item">
+            <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+          </li>
+          <li *ngIf="isAuth && !isAdmin" class="nav-item">
+            <a class="nav-link" routerLink="/user/profile" routerLinkActive="active">Profile</a>
+          </li>
+          <li *ngIf="isAuth && !isAdmin" class="nav-item">
+            <a class="nav-link" routerLink="/user/products" routerLinkActive="active">Products</a>
+          </li>
+          <li *ngIf="isAuth && !isAdmin" class="nav-item">
+            <a class="nav-link" routerLink="/user/cart" routerLinkActive="active">Cart</a>
+          </li>
+          <li *ngIf="isAuth && !isAdmin" class="nav-item">
+            <a class="nav-link" routerLink="/user/orders" routerLinkActive="active">Orders</a>
+          </li>
+          <li *ngIf="isAdmin" class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Admin
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/admin/products" routerLinkActive="active">Products</a>
+              <a class="dropdown-item" routerLink="/admin/orders" routerLinkActive="active">Orders</a>
+            </div>
+          </li>
+          <li *ngIf="isAuth" class="nav-item">
+            <a class="nav-link" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+
+      <div *ngIf="flag" class="collapse navbar-collapse" [class.show]="show" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <div class="nav-link loader4"></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>
+
+<script language="text/Javascript">
+  cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+  function clearField(t) {                   //declaring the array outside of the
+    if (!cleared[t.id]) {                      // function makes it static and global
+      cleared[t.id] = 1;  // you could use true and false, but that's more typing
+      t.value = '';         // with more chance of typos
+      t.style.color = '#fff';
+    }
+  }
+</script>

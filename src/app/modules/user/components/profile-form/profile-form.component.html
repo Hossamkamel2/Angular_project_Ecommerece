@@ -1,0 +1,55 @@
+<form [formGroup]="profileform">
+  <div class="form-group">
+    <div *ngIf="preview && preview !== null">
+      <img class="image" [src]="preview">
+    </div>
+    <div *ngIf="!preview && preview == null && profile?.gender == 1 && (!profile?.imageUrlBinary || profile?.imageUrlBinary == '')">
+      <img class="image" src="assets/images/male_default.jpg">
+    </div>
+    <div *ngIf="!preview && preview == null && profile?.gender == 2 && (!profile?.imageUrlBinary || profile?.imageUrlBinary == '')">
+      <img class="image" src="assets/images/female_default.jpg">
+    </div>
+    <div *ngIf="profile?.imageUrlBinary && profile?.imageUrlBinary != '' && !preview">
+      <img class="image" [src]="profile.imageUrlBinary">
+    </div>
+  </div>
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Profile Picture</label>
+      <input (change)="uploadFile($event)" type="file" class="form-control-file" id="exampleFormControlFile1">
+      <p style="color: red;" *ngIf="imageSizeError">
+        file size can't exceed <strong>5 mb</strong>
+      </p>
+      <p style="color: red;" *ngIf="imageFormatError">
+        Only .png, .jpg and .jpeg format allowed!
+      </p>
+    </div>
+  <div class="form-group">
+    <label>Full Name</label>
+    <input type="text" formControlName="username" class="form-control" value="{{profile?.username}}">
+    <p style="color: red;" *ngIf="username.touched && username.hasError('required')">
+      Full Name <strong>required</strong>
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" formControlName="email" class="form-control" value="{{profile?.email}}">
+    <p style="color: red;" *ngIf="email.touched && email.hasError('email') && !email.hasError('required')">
+      Please enter a valid email address
+    </p>
+    <p style="color: red;" *ngIf="email.touched && email.hasError('required')">
+      Email is <strong>required</strong>
+    </p>
+  </div>
+  <div class="form-group">
+    <label>Gender</label>
+    <select formControlName="gender" class="form-control">
+      <option selected="{{profile?.gender == 1}}" value="1">Male</option>
+      <option selected="{{profile?.gender == 2}}" value="2">Female</option>
+    </select>
+    <p style="color: red;" *ngIf="gender.touched && gender.hasError('required')">
+      gender <strong>required</strong>
+    </p>
+  </div>
+  <button (click)="save()" [disabled]="!profileform.valid || toggle || imageSizeError || imageFormatError" type="button" class="btn btn-primary">Submit</button>
+</form>
+
